@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Zynix AI — Chat, Image and Video Studio</title>
+<meta name="description" content="Zynix AI: chat with voice, generate images, and edit video in one workspace.">
+<link rel="icon" href="assets/logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head><body>
+<div class="bg"><i></i><i></i><i></i></div>
+<aside id="side" class="glass">
+  <div class="brand"><img src="assets/logo.svg" alt=""><b>Zynix <span>AI</span></b></div>
+  <nav>
+    <button class="nav on" data-v="chat">💬 Chat</button>
+    <button class="nav" data-v="image">🎨 Image Studio</button>
+    <button class="nav" data-v="video">🎬 Video Editor</button>
+    <button class="nav" data-v="pro">⭐ Upgrade to Pro</button>
+  </nav>
+  <div class="plan glass"><small>Your plan</small><b id="planName">Free</b><p id="planInfo"></p></div>
+  <button id="theme" class="ghost">◐ Switch theme</button>
+</aside>
+<main>
+  <header><button id="menu" class="ghost">☰</button><h1 id="title">Chat</h1><span id="badge" class="pill"></span></header>
+
+  <section id="chat" class="view on">
+    <div id="log" class="log"><div class="hello"><img src="assets/logo.svg" alt=""><h2>What can Zynix help you build today?</h2><p>Type a message or tap the mic and talk.</p></div></div>
+    <div class="composer glass">
+      <button id="mic" class="ghost" title="Speak">🎤</button>
+      <textarea id="in" rows="1" placeholder="Ask Zynix anything"></textarea>
+      <label class="chk"><input type="checkbox" id="spk"> Read aloud</label>
+      <button id="send" class="btn">Send</button>
+    </div>
+  </section>
+
+  <section id="image" class="view">
+    <div class="split">
+      <div class="glass panel">
+        <label>Describe your image</label>
+        <textarea id="ip" rows="4" placeholder="A crystal city floating above a neon ocean at dusk"></textarea>
+        <label>Aspect ratio</label>
+        <div id="ratios" class="chips"><button class="chip on" data-r="1/1">1:1</button><button class="chip" data-r="16/9">16:9</button><button class="chip" data-r="9/16">9:16</button><button class="chip" data-r="4/3">4:3</button><button class="chip" data-r="3/4">3:4</button></div>
+        <label>Style</label>
+        <select id="sty"><option value="0">Aurora</option><option value="1">Sunset</option><option value="2">Deep sea</option><option value="3">Monochrome</option></select>
+        <button id="gen" class="btn wide">Generate image</button>
+      </div>
+      <div id="gal" class="gal"><p class="empty">Your images appear here. Write a prompt and generate.</p></div>
+    </div>
+  </section>
+
+  <section id="video" class="view">
+    <div class="glass panel row">
+      <div class="grow"><label>Video prompt</label><input id="vp" placeholder="Cinematic neon city timelapse"></div>
+      <div><label>Length: <b id="vlab">10s</b> <small id="vcap"></small></label><input id="vd" type="range" min="3" max="60" value="10"></div>
+    </div>
+    <div class="glass panel"><label>Script for auto-captions</label><textarea id="vs" rows="2" placeholder="Paste narration. Zynix splits it into timed captions."></textarea></div>
+    <div class="glass stage"><canvas id="cv"></canvas><div id="prog" class="prog"><i></i><span>Generating…</span></div></div>
+    <div class="bar">
+      <button id="vgen" class="btn">Generate video</button><button id="vcaps" class="btn alt">Auto-captions</button>
+      <button id="vplay" class="ghost">▶ Play</button><button id="vexp" class="ghost">⬇ Export</button><span id="tc" class="mono">0.0s</span>
+    </div>
+    <div id="tl" class="glass tl"><div id="ph" class="ph"></div>
+      <div class="trk"><em>Video</em><div id="tv"></div></div>
+      <div class="trk"><em>Captions</em><div id="tc2"></div></div>
+      <div class="trk"><em>Audio</em><div id="ta" class="wave"></div></div>
+    </div>
+  </section>
+
+  <section id="pro" class="view">
+    <div class="split">
+      <div class="glass panel">
+        <h2>Zynix Pro <span class="ver">✔</span></h2>
+        <ul class="feat"><li>Videos up to 1 minute in full HD (Free: 10 seconds, 720p)</li><li>No watermark on exports</li><li>Verified badge on your profile</li><li>Priority image generation</li></ul>
+        <h3>Pay with EasyPaisa</h3>
+        <div class="pay"><span>Account holder</span><b>MUMTAZ BIBI</b><button class="cp" data-c="MUMTAZ BIBI">Copy</button></div>
+        <div class="pay"><span>Account number</span><b>03106210016</b><button class="cp" data-c="03106210016">Copy</button></div>
+        <div class="pay"><span>Email</span><b>rafaqataliwattoo730@gmail.com</b><button class="cp" data-c="rafaqataliwattoo730@gmail.com">Copy</button></div>
+      </div>
+      <form id="pf" class="glass panel">
+        <h3>Confirm your payment</h3>
+        <p class="mut">Send the Pro fee to the account above, then paste the Transaction ID from your EasyPaisa receipt.</p>
+        <label>Your name</label><input id="pn" required minlength="2">
+        <label>Transaction ID</label><input id="pt" required placeholder="e.g. 41872950163" pattern="[A-Za-z0-9]{8,20}" title="8–20 letters or digits">
+        <button class="btn wide">Verify and unlock Pro</button>
+        <p id="pm" class="mut"></p>
+      </form>
+    </div>
+  </section>
+</main>
+<div id="toast" class="toast"></div>
+<script src="js/app.js"></script>
+</body></html>
